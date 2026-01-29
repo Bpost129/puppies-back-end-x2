@@ -10,7 +10,18 @@ async function create(req, res) {
   }
 }
 
+async function index(req, res) {
+  try {
+    const puppies = await Puppy.find({}).sort({ createdAt: 'desc' })
+    res.json(puppies)
+  } catch (err) {
+    console.log(err)
+    res.json(err)
+  }
+}
+
 export {
   create,
-  
+  index,
+
 }
